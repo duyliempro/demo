@@ -11,3 +11,9 @@
  *= require_self
  *= require_tree .
  */
+
+
+img#railsLogo{
+    width: 120px;
+    height: auto;
+}
