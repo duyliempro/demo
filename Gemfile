@@ -11,6 +11,14 @@ gem 'sass-rails', '~> 4.0.0'
 
 gem 'bootstrap-sass', '2.3.2.0'
 
+
+
+source 'https://rubygems.org'
+ruby '2.0.0'
+#ruby-gemset=railstutorial_rails_4_0
+
+gem 'bcrypt-ruby', '3.1.2'
+
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 
