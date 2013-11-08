@@ -9,7 +9,7 @@
 </head>
 <body>
     <%= render 'partials/header' %>
-    <% flash.each do |name, msg| %>
+    <% flash.each do |key, value| %>
         <%#= content_tag :div, msg, :id => "flash_#{name}" %>
         <%= content_tag(:div, value, class: "alert alert-#{key}") %>
     <% end %>
