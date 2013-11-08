@@ -9,17 +9,6 @@ class MicropostsController < ApplicationController
     @microposts = Micropost.all
   end
 
-  def create
-    @micropost = current_user.microposts.build(micropost_params)
-    if @micropost.save
-      flash[:success] = "Micropost created!"
-      redirect_to root_url
-    else
-      @feed_items = []
-      render 'static_pages/home'
-    end
-  end
-
   def destroy
     @micropost.destroy
     redirect_to root_url
@@ -41,6 +30,7 @@ class MicropostsController < ApplicationController
 
   # POST /microposts
   # POST /microposts.json
+=begin
   def create
     @micropost = Micropost.new(micropost_params)
 
@@ -49,10 +39,25 @@ class MicropostsController < ApplicationController
       if @micropost.save
         format.html { redirect_to @micropost, notice: 'Micropost was successfully created.' }
         format.json { render action: 'show', status: :created, location: @micropost }
+
       else
         format.html { render action: 'new' }
         format.json { render json: @micropost.errors, status: :unprocessable_entity }
       end
+      redirect_to root_url
+    end
+  end
+=end
+
+  def create
+    @micropost = current_user.microposts.build(micropost_params)
+    @micropost.user_id = current_user.id
+    if @micropost.save
+      flash[:success] = "Micropost created!"
+      redirect_to root_url
+    else
+      @feed_items = []
+      render 'static_pages/home'
     end
   end
 
@@ -72,11 +77,9 @@ class MicropostsController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
-=begin
     def set_micropost
       @micropost = Micropost.find(params[:id])
     end
-=end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def micropost_params
